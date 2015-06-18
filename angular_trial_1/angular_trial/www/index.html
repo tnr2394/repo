@@ -1,0 +1,36 @@
+<html ng-app='adder'>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+		<script src='js/jquery.min.js'></script>
+		<script src='js/bootstrap.min.js'></script>
+		<script src='js/angular.min.js'></script>
+
+		<script src='js/app.js'></script>
+	</head>
+	<body>
+
+		<div class='container' style='width:98%;' ng-controller='myController as mc'>
+			<h1 class='jumbotron'>Angular JS </h1>
+				<button style='height:40%; margin:0 0% 0 10%; width:80%; font-size:50px;' class='btn btn-info btn-lg' ng-click="loadProducts('name')" ng-show="!loaded">Load</button>
+				<div class='panel panel-default'>
+				<table class="table table-bordered table-responsive img-round" ng-show="loaded" style='height:100%;'>
+
+					<tr>
+						<th ><button  class='btn btn-lg btn-info' ng-click="myVal='name'">Product Name</button></th><th>Description</th><th><button class='btn btn-lg btn-info' ng-click="myVal='rating'">Rating</button></th>
+					</tr>
+
+					<tr ng-repeat='product in products | orderBy:myVal'>
+						<td >{{product.name}}</td>
+						<td>{{product.description}}</td>
+						<td ng-if="product.rating<=3.0" class='danger'>{{product.rating}}</td>
+						<td ng-if="product.rating>3.0 && product.rating<=8.0" class='active'>{{product.rating}}</td>
+						<td ng-if="product.rating>8.0" class='success'>{{product.rating}}</td>
+
+						
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
